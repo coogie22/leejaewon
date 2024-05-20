@@ -1,0 +1,15 @@
+/* 작은 디바이스용 스타일 */
+@media screen and (max-width: 600px) {
+    /* 스타일 지정 */
+  }
+  
+  /* 중간 크기 디바이스용 스타일 */
+  @media screen and (min-width: 600px) and (max-width: 1024px) {
+    /* 스타일 지정 */
+  }
+  
+  /* 큰 디바이스용 스타일 */
+  @media screen and (min-width: 1024px) {
+    /* 스타일 지정 */
+  }
+  
