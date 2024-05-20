@@ -12,4 +12,7 @@
   @media screen and (min-width: 1024px) {
     /* 스타일 지정 */
   }
-  
+  img {
+    display: block; /* 이미지를 블록 요소로 만들어서 가운데 정렬할 수 있게 함 */
+    margin: auto; /* 가로 방향 가운데 정렬 */
+}
