@@ -2,24 +2,29 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스마트팜 실시간 데이터 대시보드</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://d3js.org/d3.v7.min.js"></script> <!-- D3.js 라이브러리 -->
+    <title>스마트팜 모니터링</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>스마트팜 실시간 데이터 대시보드</h1>
-    
-    <div id="dashboard">
-        <svg id="chart" width="800" height="400"></svg> <!-- D3.js 차트 영역 -->
-        <button id="startUpdates">실시간 업데이트 시작</button>
-        <button id="stopUpdates">업데이트 중지</button>
-    </div>
-
-    <script src="app.js"></script>
+    <header>
+        <h1>스마트팜 모니터링</h1>
+    </header>
+    <main>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="controls">
+            <button onclick="water()">물 주기</button>
+            <button onclick="setTemperature()">온도 조절</button>
+            <button onclick="setHumidity()">습도 조절</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
+
 
  
  <!-- Google tag (gtag.js) -->
