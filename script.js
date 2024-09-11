@@ -2,16 +2,16 @@ const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['1시', '2시', '3시', '4시', '5시', '6시'],
+        labels: [],
         datasets: [{
             label: '온도',
-            data: [20, 22, 19, 21, 24, 23],
+            data: [],
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderWidth: 1
         }, {
             label: '습도',
-            data: [30, 32, 35, 31, 33, 30],
+            data: [],
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderWidth: 1
@@ -31,15 +31,82 @@ const myChart = new Chart(ctx, {
     }
 });
 
-// 버튼 기능 예시 (실제 기능은 서버와 통신해야 함)
-function water() {
-    alert('물 주기 기능 호출');
+let updateInterval = 1000;
+
+// 시계 업데이트
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
 }
 
+// 차트 업데이트
+function updateChart() {
+    const now = new Date();
+    const timeLabel = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+
+    if (myChart.data.labels.length >= 20) {
+        myChart.data.labels.shift();
+        myChart.data.datasets.forEach(dataset => dataset.data.shift());
+    }
+
+    myChart.data.labels.push(timeLabel);
+    myChart.data.datasets[0].data.push(Math.random() * 30 + 20);
+    myChart.data.datasets[1].data.push(Math.random() * 50 + 30);
+
+    myChart.update();
+}
+
+// 주기적으로 차트와 시계 업데이트
+let chartInterval = setInterval(() => {
+    updateClock();
+    updateChart();
+}, updateInterval);
+
+// 시간 단위 설정
+function setTimeRange() {
+    const input = document.getElementById('timeInput').value;
+    const unit = document.getElementById('timeUnit').value;
+
+    if (input) {
+        let intervalInSeconds = parseInt(input);
+
+        switch (unit) {
+            case 'minutes':
+                intervalInSeconds *= 60;
+                break;
+            case 'hours':
+                intervalInSeconds *= 3600;
+                break;
+            case 'seconds':
+            default:
+                break;
+        }
+
+        updateInterval = intervalInSeconds * 1000;
+        clearInterval(chartInterval);
+        chartInterval = setInterval(() => {
+            updateClock();
+            updateChart();
+        }, updateInterval);
+
+        alert(`차트가 ${input} ${unit === 'seconds' ? '초' : unit === 'minutes' ? '분' : '시간'} 간격으로 업데이트됩니다.`);
+    }
+}
+
+// 온도 및 습도 설정
 function setTemperature() {
-    alert('온도 조절 기능 호출');
+    const temperature = prompt('설정할 온도를 입력하세요 (예: 22):');
+    if (temperature !== null) {
+        alert(`온도가 ${temperature}로 설정되었습니다.`);
+    }
 }
 
 function setHumidity() {
-    alert('습도 조절 기능 호출');
+    const humidity = prompt('설정할 습도를 입력하세요 (예: 60):');
+    if (humidity !== null) {
+        alert(`습도가 ${humidity}로 설정되었습니다.`);
+    }
 }

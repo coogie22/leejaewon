@@ -10,13 +10,20 @@
 <body>
     <header>
         <h1>스마트팜 모니터링</h1>
+        <div id="clock"></div>
     </header>
     <main>
         <div class="chart-container">
             <canvas id="myChart"></canvas>
         </div>
         <div class="controls">
-            <button onclick="water()">물 주기</button>
+            <input type="number" id="timeInput" placeholder="시간 입력" />
+            <select id="timeUnit">
+                <option value="seconds">초</option>
+                <option value="minutes">분</option>
+                <option value="hours">시간</option>
+            </select>
+            <button onclick="setTimeRange()">시간 단위 설정</button>
             <button onclick="setTemperature()">온도 조절</button>
             <button onclick="setHumidity()">습도 조절</button>
         </div>
@@ -24,6 +31,8 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
  

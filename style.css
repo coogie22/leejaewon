@@ -10,7 +10,12 @@ header {
     background-color: #4CAF50;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+}
+
+#clock {
+    font-size: 1.5em;
+    margin-top: 10px;
 }
 
 main {
@@ -22,19 +27,23 @@ main {
 
 .chart-container {
     width: 100%;
-    max-width: 600px; /* 차트 최대 너비 */
+    max-width: 600px;
     margin-bottom: 20px;
     padding: 10px;
-}
-
-.chart {
-    width: 100%;
-    height: auto; /* 비율을 유지하면서 높이 자동 조정 */
 }
 
 .controls {
     display: flex;
     gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+input, select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 button {
@@ -51,10 +60,25 @@ button:hover {
     background-color: #45a049;
 }
 
-/* 모바일 화면에 대한 스타일 */
+/* 차트 및 컨트롤러 레이아웃 조정 */
+.chart-container {
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.controls {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 모바일 반응형 스타일 */
 @media (max-width: 600px) {
     .chart-container {
-        padding: 5px; /* 모바일에서 패딩 줄이기 */
+        padding: 10px;
     }
 
     .controls {
@@ -62,7 +86,7 @@ button:hover {
         align-items: center;
     }
 
-    button {
+    button, input, select {
         width: 100%;
         max-width: 200px;
         margin-bottom: 10px;
