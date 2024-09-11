@@ -91,4 +91,42 @@ button:hover {
         max-width: 200px;
         margin-bottom: 10px;
     }
+    /* 기존 스타일에 추가 */
+.data-analysis {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.data-analysis h2 {
+    margin-bottom: 10px;
+}
+
+.analysis-chart {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+/* CSS 코드 */
+.automation-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.automation-controls h2 {
+    margin-bottom: 10px;
+}
+
+.automation-controls div {
+    margin-bottom: 10px;
+}
+
+.automation-controls input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
 }

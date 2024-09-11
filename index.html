@@ -26,16 +26,39 @@
             <button onclick="setTimeRange()">시간 단위 설정</button>
             <button onclick="setTemperature()">온도 조절</button>
             <button onclick="setHumidity()">습도 조절</button>
+            <button onclick="setSoilMoisture()">토양 수분 조절</button>
         </div>
+        <div class="data-analysis">
+            <h2>데이터 분석</h2>
+            <select id="periodSelect">
+                <option value="daily">일별</option>
+                <option value="weekly">주별</option>
+                <option value="monthly">월별</option>
+            </select>
+            <button onclick="fetchData()">데이터 조회</button>
+            <div class="analysis-chart">
+                <canvas id="analysisChart"></canvas>
+            </div>
+        </div>
+        <!-- HTML 코드 -->
+<div class="automation-controls">
+    <h2>자동화 규칙 설정</h2>
+    <div>
+        <label for="humidityThreshold">토양 수분 임계값:</label>
+        <input type="number" id="humidityThreshold" placeholder="토양 수분 임계값" />
+    </div>
+    <div>
+        <label for="temperatureThreshold">온도 임계값:</label>
+        <input type="number" id="temperatureThreshold" placeholder="온도 임계값" />
+    </div>
+    <button onclick="setAutomationRules()">규칙 설정</button>
+</div>
+
     </main>
     <script src="script.js"></script>
 </body>
 </html>
 
-
-
-
- 
  <!-- Google tag (gtag.js) -->
  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LDQ2E07S4"></script>
  <script>
