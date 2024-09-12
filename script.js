@@ -203,7 +203,7 @@ function setAutomationRules() {
     automationRules.humidityThreshold = humidityThreshold || null;
     automationRules.temperatureThreshold = temperatureThreshold || null;
 
-    alert('자동화 규칙이 설정되었습니다.');
+    alert('알림이 설정되었습니다.');
 }
 
 // 자동화 규칙을 기반으로 조치를 취하는 함수
