@@ -161,3 +161,31 @@ button:hover {
 h2 {
     text-align: center;
 }
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 600px) {
+    body {
+        padding: 0 10px; /* 좌우 여백 추가 */
+    }
+
+    .chart-container {
+        padding: 10px;
+        width: calc(100% - 20px); /* 전체 너비에서 20px 줄이기 */
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        width: calc(100% - 20px); /* 전체 너비에서 20px 줄이기 */
+    }
+
+    button, input, select {
+        width: 100%;
+        max-width: 180px; /* 버튼 및 입력 필드 최대 너비 줄이기 */
+        margin-bottom: 10px;
+    }
+
+    .data-analysis, .automation-controls {
+        width: calc(100% - 20px); /* 전체 너비에서 20px 줄이기 */
+    }
+}
