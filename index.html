@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog with Rain Effect</title>
+    <title>Blog</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         html, body {
             height: 100%; /* 전체 화면 차지 */
             margin: 0; 
-            overflow: hidden; /* 스크롤 숨기기 */
+            /* overflow: hidden; 스크롤 숨기기 */
         }
         canvas {
             position: absolute; /* 캔버스를 절대 위치로 설정 */
@@ -19,6 +19,8 @@
             height: 100%; /* 캔버스 높이 */
             display: block; 
             z-index: -1; /* 캔버스를 뒤로 보냄 */
+            pointer-events: none; /* 비효과가 클릭이나 스크롤을 방해하지 않도록 함 */
+
         }
         .navbar {
             position: relative; /* 내비게이션 바를 상대 위치로 설정 */
@@ -61,7 +63,7 @@
         
         <!-- 여기서부터 추가된 코드 -->
         <label class="container">
-            <div class="simple-text">Click me!</div>
+            <div class="simple-text">Click !</div>
             <input checked="checked" type="checkbox" />
             <div class="checkmark"></div>
             <div class="torch">
