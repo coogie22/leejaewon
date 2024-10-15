@@ -281,9 +281,7 @@ header {
 }
 
 .button {
-  position: absolute; /* Positioning the button */
-  top: 10px; /* Adjust as necessary */
-  right: 10px; /* Adjust as necessary */
+  /* position: absolute; 이 줄을 삭제하세요 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -296,7 +294,10 @@ header {
   border: none;
   cursor: pointer;
   transition: 400ms;
+  margin-top: 20px; /* 상단 여백 추가 */
+  /* 원하는 경우 추가적인 여백을 조정하세요 */
 }
+
 
 .button .text {
   color: white;
