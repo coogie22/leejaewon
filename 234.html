@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Rain Effect</title>
+    <style>
+        html, body {
+            height: 100%; /* 전체 화면 차지 */
+            margin: 0; 
+        }
+        canvas {
+            width: 100%; /* 캔버스 너비 */
+            height: 100%; /* 캔버스 높이 */
+            display: block; 
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <script>
+        // 기본적인 Three.js 씬 생성
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // 바닥 생성
+        const geometry = new THREE.PlaneGeometry(10, 10);
+        const material = new THREE.MeshBasicMaterial({ color: 0x555555, side: THREE.DoubleSide });
+        const ground = new THREE.Mesh(geometry, material);
+        ground.rotation.x = - Math.PI / 2; // 바닥을 수평으로
+        scene.add(ground);
+
+        // 카메라 위치 설정
+        camera.position.z = 5;
+
+        // 비를 위한 파티클 시스템 생성
+        const particleCount = 1000;
+        const particles = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        
+        for (let i = 0; i < particleCount; i++) {
+            // 랜덤 위치 생성
+            positions[i * 3] = Math.random() * 10 - 5;  // X 좌표
+            positions[i * 3 + 1] = Math.random() * 5;   // Y 좌표
+            positions[i * 3 + 2] = Math.random() * 10 - 5; // Z 좌표
+        }
+        
+        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+        const particleSystem = new THREE.Points(particles, particleMaterial);
+        scene.add(particleSystem);
+
+        // 비 애니메이션
+        function animate() {
+            requestAnimationFrame(animate);
+            particleSystem.rotation.y += 0.01; // 회전 애니메이션
+            
+            // 비가 떨어지는 효과
+            const positions = particleSystem.geometry.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3 + 1] -= 0.05; // Y 좌표 감소
+                if (positions[i * 3 + 1] < 0) {
+                    positions[i * 3 + 1] = Math.random() * 5; // 바닥에 닿으면 다시 위로
+                }
+            }
+            particleSystem.geometry.attributes.position.needsUpdate = true; // 업데이트 플래그 설정
+            
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // 브라우저 크기 조절 시 엔진 크기 조정
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>
