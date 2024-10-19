@@ -321,3 +321,65 @@ header {
 .button:hover svg path {
   fill: #181717;
 }
+
+
+html, body {
+  height: 100%; /* 전체 화면 차지 */
+  margin: 0; 
+  /* overflow: hidden; 스크롤 숨기기 */
+}
+canvas {
+  position: absolute; /* 캔버스를 절대 위치로 설정 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 캔버스 너비 */
+  height: 100%; /* 캔버스 높이 */
+  display: block; 
+  z-index: -1; /* 캔버스를 뒤로 보냄 */
+  pointer-events: none; /* 비효과가 클릭이나 스크롤을 방해하지 않도록 함 */
+
+}
+.navbar {
+  position: relative; /* 내비게이션 바를 상대 위치로 설정 */
+  z-index: 1; /* 내비게이션 바를 앞에 보이게 함 */
+}
+.container {
+  position: relative; /* 컨테이너를 상대 위치로 설정 */
+  z-index: 1; /* 컨테이너를 앞에 보이게 함 */
+}
+/* 나머지 스타일은 styles.css에서 설정할 수 있습니다. */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* 배경색 */
+}
+header {
+  background-color: rgba(0, 0, 0, 0.8); /* 반투명 검은색 배경 */
+  padding: 10px 0;
+  text-align: center;
+  position: relative; /* 위치 설정 */
+  z-index: 1; /* 네비게이션을 최상위로 */
+}
+.navbar ul {
+  list-style-type: none; /* 기본 리스트 스타일 제거 */
+  padding: 0;
+  display: flex; /* Flexbox를 사용하여 수평 정렬 */
+  justify-content: center; /* 중앙 정렬 */
+}
+.navbar li {
+  margin: 0 15px; /* 리스트 아이템 간의 간격 */
+}
+.navbar a {
+  color: white; /* 글자색 흰색 */
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 10px 15px; /* 패딩 추가 */
+  transition: background 0.3s; /* 배경색 변화 애니메이션 */
+}
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2); /* 호버 시 배경색 */
+  border-radius: 5px; /* 둥근 모서리 */
+}
+
+html {
+  scroll-behavior: smooth;
+}

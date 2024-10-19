@@ -6,65 +6,6 @@
     <title>Blog </title>
     
     <link rel="stylesheet" href="styles.css">
-    <style>
-        
-        html, body {
-            height: 100%; /* 전체 화면 차지 */
-            margin: 0; 
-            /* overflow: hidden; 스크롤 숨기기 */
-        }
-        canvas {
-            position: absolute; /* 캔버스를 절대 위치로 설정 */
-            top: 0;
-            left: 0;
-            width: 100%; /* 캔버스 너비 */
-            height: 100%; /* 캔버스 높이 */
-            display: block; 
-            z-index: -1; /* 캔버스를 뒤로 보냄 */
-            pointer-events: none; /* 비효과가 클릭이나 스크롤을 방해하지 않도록 함 */
-
-        }
-        .navbar {
-            position: relative; /* 내비게이션 바를 상대 위치로 설정 */
-            z-index: 1; /* 내비게이션 바를 앞에 보이게 함 */
-        }
-        .container {
-            position: relative; /* 컨테이너를 상대 위치로 설정 */
-            z-index: 1; /* 컨테이너를 앞에 보이게 함 */
-        }
-        /* 나머지 스타일은 styles.css에서 설정할 수 있습니다. */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* 배경색 */
-        }
-        header {
-            background-color: rgba(0, 0, 0, 0.8); /* 반투명 검은색 배경 */
-            padding: 10px 0;
-            text-align: center;
-            position: relative; /* 위치 설정 */
-            z-index: 1; /* 네비게이션을 최상위로 */
-        }
-        .navbar ul {
-            list-style-type: none; /* 기본 리스트 스타일 제거 */
-            padding: 0;
-            display: flex; /* Flexbox를 사용하여 수평 정렬 */
-            justify-content: center; /* 중앙 정렬 */
-        }
-        .navbar li {
-            margin: 0 15px; /* 리스트 아이템 간의 간격 */
-        }
-        .navbar a {
-            color: white; /* 글자색 흰색 */
-            text-decoration: none; /* 밑줄 제거 */
-            padding: 10px 15px; /* 패딩 추가 */
-            transition: background 0.3s; /* 배경색 변화 애니메이션 */
-        }
-        .navbar a:hover {
-            background: rgba(255, 255, 255, 0.2); /* 호버 시 배경색 */
-            border-radius: 5px; /* 둥근 모서리 */
-        }
-    </style>
 </head>
 <body>
     <canvas id="rainCanvas"></canvas>
@@ -72,24 +13,14 @@
     <header>
         <h1>Blog</h1>
         <nav class="navbar">
-            
             <ul>
-                
-
-
-         
                 <li><a href="#about">소개</a></li>
                 <li><a href="#projects">프로젝트</a></li>
                 <li><a href="#blog">블로그</a></li>
                 <li><a href="#contact">연락처</a></li>
             </ul>
-            
         </nav>
-
-       
-          
     </header>
-
     <section id="about">
         <h2>소개</h2>
         <p>준비중입니다 .. 🦦🦦🦦</p>
@@ -208,53 +139,9 @@
     <footer>
         <p>© 2024 leejaewon</p>
     </footer>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Three.js를 사용하여 비 내리는 씬 생성
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('rainCanvas'), alpha: true });
 
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        // 바닥 생성
-        const geometry = new THREE.PlaneGeometry(10, 10);
-        const material = new THREE.MeshBasicMaterial({ color: 0x7CFC00 });
-        const floor = new THREE.Mesh(geometry, material);
-        floor.rotation.x = -Math.PI / 2; // 바닥을 수평으로
-        scene.add(floor);
-
-        // 비 생성
-        const rainCount = 1000;
-        const rainGeometry = new THREE.BufferGeometry();
-        const rainVertices = new Float32Array(rainCount * 3);
-        for (let i = 0; i < rainCount * 3; i++) {
-            rainVertices[i] = (Math.random() - 0.5) * 30; // -50에서 50 사이의 값
-        }
-        rainGeometry.setAttribute('position', new THREE.BufferAttribute(rainVertices, 3));
-        const rainMaterial = new THREE.PointsMaterial({ color: 0xAAAAFF, size: 0.2 });
-        const rain = new THREE.Points(rainGeometry, rainMaterial);
-        scene.add(rain);
-
-        camera.position.z = 5;
-
-        const animate = function () {
-            requestAnimationFrame(animate);
-            rain.rotation.y += 0.01; // 비가 회전
-            renderer.render(scene, camera);
-        };
-
-        animate();
-
-        window.addEventListener('resize', () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            renderer.setSize(width, height);
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-        });
-    </script>
+    
     <script src="scripts.js"></script>
 </body>
 </html>
